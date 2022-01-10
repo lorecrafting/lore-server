@@ -3,7 +3,7 @@ services:
   app:
     depends_on:
       - db
-    image: .
+    build: .
     stdin_open: true
     tty: true
     ports:
