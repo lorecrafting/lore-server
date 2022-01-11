@@ -1,8 +1,8 @@
 version: "3.9"
 services:
   app:
-    depends_on:
-      - db
+    # depends_on:
+    #   - db
     build: .
     stdin_open: true
     tty: true
@@ -11,9 +11,9 @@ services:
       - "4000:4000"
     volumes:
       - .:/usr/src/game
-  db:
-    image: postgres:13-alpine
-    env_file:
-      - .env.local
-    environment:
-      POSTGRES_DB: evennia_development 
+  # db:
+  #   image: postgres:13-alpine
+  #   env_file:
+  #     - .env.local
+  #   environment:
+  #     POSTGRES_DB: evennia_development 
