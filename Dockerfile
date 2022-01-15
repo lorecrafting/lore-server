@@ -20,8 +20,6 @@ EXPOSE 4002
 
 ENTRYPOINT sleep 5 \ 
            && evennia migrate \
-           && echo "from evennia import DefaultAccount;\
-               DefaultAccount.objects.create_superuser('admin', 'admin@myproject.com', 'password')" | evennia shell \
-           && echo "admin admin@myaccount.com password" | evennia start --log
+           && evennia start --log
 
 # ENTRYPOINT ["tail", "-f", "/dev/null"]
