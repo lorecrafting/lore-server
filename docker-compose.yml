@@ -17,3 +17,5 @@ services:
       - .env.local
     environment:
       POSTGRES_DB: evennia_development
+    volumes:
+      - ./postgres-data:/var/lib/postgresql/data
