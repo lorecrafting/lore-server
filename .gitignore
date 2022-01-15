@@ -1,3 +1,6 @@
+# Postgres development docker volume
+postgres-data/
+
 # Environmental variables
 .env.local
 
