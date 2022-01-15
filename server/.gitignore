@@ -3,6 +3,7 @@ postgres-data/
 
 # Environmental variables
 .env.local
+.env.postgres-dev
 
 # Byte-compiled / optimized / DLL files
 __pycache__/

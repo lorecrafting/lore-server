@@ -14,7 +14,7 @@ services:
   db:
     image: postgres:13-alpine
     env_file:
-      - .env.local
+      - .env.postgres-dev
     environment:
       POSTGRES_DB: evennia_development
     volumes:
