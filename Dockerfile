@@ -10,6 +10,10 @@ RUN pip3 install --requirement requirements.txt
 
 COPY . /tmp/
 
+EXPOSE 4000
+EXPOSE 4001
+EXPOSE 4002
+
 # RUN echo "from evennia import DefaultAccount;\
 #      DefaultAccount.objects.create_superuser('admin', 'admin@myproject.com', 'password')" \
 #     | evennia shell
