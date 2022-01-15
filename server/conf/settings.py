@@ -34,6 +34,9 @@ from evennia.settings_default import *
 # This is the name of your game. Make it catchy!
 SERVERNAME = "lorecraft"
 
+# Traceback for Django 
+DEBUG = True
+
 
 ######################################################################
 # Settings given in secret_settings.py override those in this file.
