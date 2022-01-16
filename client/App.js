@@ -7,6 +7,7 @@
  */
 
 import React, { useEffect } from 'react';
+import { WebView } from 'react-native-webview';
 import type { Node } from 'react';
 import {
   SafeAreaView,
@@ -15,7 +16,8 @@ import {
   StyleSheet,
   useColorScheme,
   View,
-  TextInput
+  TextInput,
+  Text
 } from 'react-native';
 
 import {
@@ -34,9 +36,8 @@ const UselessTextInput = () => {
         style={styles.input}
         onChangeText={onChangeText}
         value={text}
-        onEndEditing={function() {
-          console.log(window.Evennia.msg, text)
-          window.Evennia.msg(text)
+        onEndEditing={function () {
+          window.Evennia.msg('text',[text])
         }}
       />
     </SafeAreaView>
@@ -56,11 +57,17 @@ const App: () => Node = () => {
       <ScrollView
         contentInsetAdjustmentBehavior="automatic"
         style={backgroundStyle}>
+        
         <View
           style={{
             backgroundColor: isDarkMode ? Colors.black : Colors.white,
           }}>
-            <UselessTextInput/>
+            <WebView
+          originWhitelist={['*']}
+          source={{ html: '<h1>Hello world</h1>' }}
+        />
+            <Text>asdfWAT</Text>
+          <UselessTextInput />
         </View>
       </ScrollView>
     </SafeAreaView>
