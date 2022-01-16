@@ -12,8 +12,6 @@ target 'client' do
     :hermes_enabled => true
   )
 
-  pod 'react-native-webview', :path => '../node_modules/react-native-webview'
-
   target 'clientTests' do
     inherit! :complete
     # Pods for testing
