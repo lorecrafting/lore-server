@@ -44,14 +44,11 @@ const UselessTextInput = () => {
 };
 
 const App: () => Node = () => {
+  
   const { width } = useWindowDimensions();
   const mainScrollView = useRef()
-
   const [serverMessages, setServerMessages] = React.useState([]);
-  const isDarkMode = useColorScheme() === 'dark';
-  const backgroundStyle = {
-    backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
-  };
+
   // Handle incoming messages from server and append to serverMessages array
   useEffect((e) => {
     const serverMessagesList = [];
@@ -62,7 +59,7 @@ const App: () => Node = () => {
   }, [])
 
   return (
-    <SafeAreaView style={{ ...backgroundStyle, flex: 1 }}>
+    <SafeAreaView style={{ flex: 1 }}>
       <View style={{ flex: 1, margin: 14 }}>
         <ScrollView
           ref={mainScrollView}
