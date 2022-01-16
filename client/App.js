@@ -67,20 +67,19 @@ const App: () => Node = () => {
   }, [])
 
   return (
-    <SafeAreaView style={backgroundStyle}>
+    <SafeAreaView style={{...backgroundStyle, flex: 1}}>
       <ScrollView
         ref={mainScrollView}
         onContentSizeChange={() => mainScrollView.current.scrollToEnd()}
         contentInsetAdjustmentBehavior="automatic"
         style={backgroundStyle}
-
       >
 
-        <View style={{ flex: 1, flexDirection: 'column', width: '100%' }}>
-          <RenderHtml contentWidth={width} source={{html: serverMessages.join('<br/><br/>')}} style={{ width: '100%', height: 600, backgroundColor: 'blue', marginTop: 20 }} />
-        </View>
+        <RenderHtml contentWidth={width} source={{html: serverMessages.join('<br/><br/>')}} style={{ width: '100%', height: 600, backgroundColor: 'blue', marginTop: 20 }} />
+        
       </ScrollView>
       <UselessTextInput />
+      
     </SafeAreaView>
   );
 };
