@@ -9,6 +9,7 @@ import Evennia from './evennia.js';
 
 
 window.wsurl = 'ws://localhost:4002/'
+window.
 window.Evennia.init()
 
 AppRegistry.registerComponent(appName, () => App);

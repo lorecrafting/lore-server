@@ -215,7 +215,7 @@ An "emitter" object must have a function
     // Websocket Connector
     //
     var WebsocketConnection = function () {
-        log("Trying websocket ...", window.wsurl, window.csessid);
+        log("Trying websocket ...", window.wsurl,);
         var open = false;
         var ever_open = false;
         var websocket = null;
@@ -439,10 +439,9 @@ An "emitter" object must have a function
 
         return {connect: init, msg: msg, close: close, isOpen: isOpen};
     };
-    console.log('here is Evennia', Evennia)
 
     window.Evennia = Evennia;
-    console.log('window.Evennia', window.Evennia)
+
 })(); // end of auto-calling Evennia object defintion
 
 // helper logging function (requires a js dev-console in the browser)
@@ -452,7 +451,6 @@ function log() {
   }
 }
 
-// Evennia.init()
 // Called when page has finished loading (kicks the client into gear)
 // $(document).ready(function() {
 //     setTimeout( function () {
