@@ -23,8 +23,6 @@ import {
 
 import {
   Colors,
-  Header,
-  LearnMoreLinks,
 } from 'react-native/Libraries/NewAppScreen';
 
 const UselessTextInput = () => {
@@ -60,26 +58,20 @@ const App: () => Node = () => {
     Evennia.emitter.on('text', (msg) => {
       serverMessagesList.push(msg[0]);
       setServerMessages([...serverMessagesList])
-      // console.log(mainScrollView)
-      // console.log('*****', mainScrollView?.current?.scrollToEnd({ animated: true }))
-      // mainScrollView?.current?.scrollToEnd({ animated: true });
     })
   }, [])
 
   return (
-    <SafeAreaView style={{...backgroundStyle, flex: 1}}>
-      <ScrollView
-        ref={mainScrollView}
-        onContentSizeChange={() => mainScrollView.current.scrollToEnd()}
-        contentInsetAdjustmentBehavior="automatic"
-        style={backgroundStyle}
-      >
+    <SafeAreaView style={{ ...backgroundStyle, flex: 1 }}>
+      <View style={{ flex: 1 }}>
+        <ScrollView
+          ref={mainScrollView}
+          contentInsetAdjustmentBehavior="automatic"
+          onContentSizeChange={() => mainScrollView.current.scrollToEnd()}
+        ><RenderHtml contentWidth={width} source={{ html: serverMessages.join('<br/><br/>') }} /></ScrollView>
+        <UselessTextInput />
+      </View>
 
-        <RenderHtml contentWidth={width} source={{html: serverMessages.join('<br/><br/>')}} style={{ width: '100%', height: 600, backgroundColor: 'blue', marginTop: 20 }} />
-        
-      </ScrollView>
-      <UselessTextInput />
-      
     </SafeAreaView>
   );
 };
@@ -102,14 +94,10 @@ const styles = StyleSheet.create({
     fontWeight: '700',
   },
   input: {
-    height: 50,
+    height: 35,
     margin: 12,
     borderWidth: 1,
     padding: 10,
-    position: 'absolute',
-    left: 0,
-    right: 0,
-    bottom: 0
   },
 });
 
