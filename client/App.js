@@ -35,7 +35,8 @@ const UselessTextInput = () => {
         onChangeText={onChangeText}
         value={text}
         onEndEditing={function() {
-          alert('ohai')
+          console.log(window.Evennia.msg, text)
+          window.Evennia.msg(text)
         }}
       />
     </SafeAreaView>

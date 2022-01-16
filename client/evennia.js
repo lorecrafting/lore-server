@@ -276,7 +276,7 @@ An "emitter" object must have a function
 
         var msg = function(data) {
             // send data across the wire. Make sure to json it.
-            // console.log("client->server:", data)
+            console.log("client->server:", data)
             websocket.send(JSON.stringify(data));
         };
 
