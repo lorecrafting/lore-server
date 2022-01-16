@@ -8,7 +8,7 @@ import {name as appName} from './app.json';
 import Evennia from './evennia.js';
 
 
-window.wsurl = 'ws://localhost:4002/'
+window.wsurl = 'wss://lorecraft.ngrok.io'
 window.
 window.Evennia.init()
 
