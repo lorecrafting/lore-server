@@ -68,10 +68,9 @@ const App: () => Node = () => {
 
   return (
     <SafeAreaView style={backgroundStyle}>
-      <StatusBar barStyle={isDarkMode ? 'light-content' : 'dark-content'} />
       <ScrollView
         ref={mainScrollView}
-        onContentSizeChange={() => console.log('content CHANGED***')}
+        onContentSizeChange={() => mainScrollView.current.scrollToEnd()}
         contentInsetAdjustmentBehavior="automatic"
         style={backgroundStyle}
 
@@ -104,10 +103,14 @@ const styles = StyleSheet.create({
     fontWeight: '700',
   },
   input: {
-    height: 40,
+    height: 50,
     margin: 12,
     borderWidth: 1,
     padding: 10,
+    position: 'absolute',
+    left: 0,
+    right: 0,
+    bottom: 0
   },
 });
 
