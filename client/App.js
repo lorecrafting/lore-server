@@ -45,11 +45,21 @@ const UselessTextInput = () => {
 };
 
 const App: () => Node = () => {
+  const [serverMessages, setServerMessages] = React.useState([]);
   const isDarkMode = useColorScheme() === 'dark';
-
   const backgroundStyle = {
     backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
   };
+  console.log(window.Evennia.emitter.on)
+  
+  useEffect( (e) => {
+    const serverMessagesList = [];
+    Evennia.emitter.on('text', (msg) => {
+      serverMessagesList.push(msg[0]);
+      setServerMessages([...serverMessagesList])
+      console.log(serverMessagesList)
+    })
+  },[])
 
   return (
     <SafeAreaView style={backgroundStyle}>
