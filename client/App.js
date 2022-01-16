@@ -7,7 +7,9 @@
  */
 
 import React from 'react';
-import type {Node} from 'react';
+// import Evennia from './evennia.js'
+import axios from 'axios';
+import type { Node } from 'react';
 import {
   SafeAreaView,
   ScrollView,
@@ -16,6 +18,7 @@ import {
   Text,
   useColorScheme,
   View,
+  Button
 } from 'react-native';
 
 import {
@@ -26,10 +29,23 @@ import {
   ReloadInstructions,
 } from 'react-native/Libraries/NewAppScreen';
 
-const Section = ({children, title}): Node => {
+const Section = ({ children, title }): Node => {
   const isDarkMode = useColorScheme() === 'dark';
+  console.log('owai')
+
+  axios.get('https://www.google.com')
+    .then( function(res) {
+      console.log('RESRESRSRES', res)
+    })
+
   return (
     <View style={styles.sectionContainer}>
+      <Button
+        onClick={function() {
+          console.log('OHAI')
+        }}
+        title="Press Me"
+      />
       <Text
         style={[
           styles.sectionTitle,
@@ -71,7 +87,7 @@ const App: () => Node = () => {
             backgroundColor: isDarkMode ? Colors.black : Colors.white,
           }}>
           <Section title="Step One">
-            Edit <Text style={styles.highlight}>App.js</Text> to change this
+            EdERQR <Text style={styles.highlight}>App.js</Text> to change this
             screen and then come back to see your edits.
           </Section>
           <Section title="See Your Changes">
