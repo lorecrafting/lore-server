@@ -6,8 +6,8 @@
  * @flow strict-local
  */
 
-import React, { useEffect } from 'react';
-import { WebView } from 'react-native-webview';
+import React, { useEffect, useRef } from 'react';
+import RenderHtml from 'react-native-render-html';
 import type { Node } from 'react';
 import {
   SafeAreaView,
@@ -17,7 +17,8 @@ import {
   useColorScheme,
   View,
   TextInput,
-  Text
+  Text,
+  useWindowDimensions
 } from 'react-native';
 
 import {
@@ -45,38 +46,42 @@ const UselessTextInput = () => {
 };
 
 const App: () => Node = () => {
-
-  scrollToEnd = () => {
-    console.log('r u scroll')
-    this.scrollView.scrollToEnd();
-  }
+  const { width } = useWindowDimensions();
+  const mainScrollView = useRef()
 
   const [serverMessages, setServerMessages] = React.useState([]);
   const isDarkMode = useColorScheme() === 'dark';
   const backgroundStyle = {
     backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
   };
-  
-  useEffect( (e) => {
+  // Handle incoming messages from server and append to serverMessages array
+  useEffect((e) => {
     const serverMessagesList = [];
     Evennia.emitter.on('text', (msg) => {
       serverMessagesList.push(msg[0]);
       setServerMessages([...serverMessagesList])
+      // console.log(mainScrollView)
+      // console.log('*****', mainScrollView?.current?.scrollToEnd({ animated: true }))
+      // mainScrollView?.current?.scrollToEnd({ animated: true });
     })
-  },[])
+  }, [])
 
   return (
     <SafeAreaView style={backgroundStyle}>
       <StatusBar barStyle={isDarkMode ? 'light-content' : 'dark-content'} />
       <ScrollView
+        ref={mainScrollView}
+        onContentSizeChange={() => console.log('content CHANGED***')}
         contentInsetAdjustmentBehavior="automatic"
-        style={backgroundStyle}>
+        style={backgroundStyle}
+
+      >
+
         <View style={{ flex: 1, flexDirection: 'column', width: '100%' }}>
-          <Text>Show webview</Text>
-          <WebView source={{ html: serverMessages.join('<br/><br/>') }} style={{ width: '100%', height: 600, backgroundColor: 'blue', marginTop: 20 }} />
+          <RenderHtml contentWidth={width} source={{html: serverMessages.join('<br/><br/>')}} style={{ width: '100%', height: 600, backgroundColor: 'blue', marginTop: 20 }} />
         </View>
       </ScrollView>
-      <UselessTextInput/>
+      <UselessTextInput />
     </SafeAreaView>
   );
 };
