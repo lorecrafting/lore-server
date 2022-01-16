@@ -1,5 +1,5 @@
 /*
-Evenna webclient library
+Evenna webclient library 
 
 This javascript library handles all communication between Evennia and
 whatever client front end is used.
@@ -49,6 +49,7 @@ An "emitter" object must have a function
         - off(cmdname) - remove the listener for this cmdname.
 */
 
+
 (function() {
     "use strict"
     var cmdid = 0;
@@ -85,7 +86,7 @@ An "emitter" object must have a function
             if (opts.connection) {
                this.connection = opts.connection;
             }
-            else if (window.WebSocket && wsactive) {
+            else if (window.WebSocket) {
                 this.connection = new WebsocketConnection();
             } else {
                 this.connection = new AjaxCometConnection();
@@ -214,7 +215,7 @@ An "emitter" object must have a function
     // Websocket Connector
     //
     var WebsocketConnection = function () {
-        log("Trying websocket ...");
+        log("Trying websocket ...", window.wsurl, window.csessid);
         var open = false;
         var ever_open = false;
         var websocket = null;
@@ -450,13 +451,14 @@ function log() {
   }
 }
 
+Evennia.init()
 // Called when page has finished loading (kicks the client into gear)
-$(document).ready(function() {
-    setTimeout( function () {
-        // the short timeout supposedly causes the load indicator
-        // in Chrome to stop spinning
-        Evennia.init()
-        },
-        500
-    );
-});
+// $(document).ready(function() {
+//     setTimeout( function () {
+//         // the short timeout supposedly causes the load indicator
+//         // in Chrome to stop spinning
+//         Evennia.init()
+//         },
+//         500
+//     );
+// });
