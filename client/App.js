@@ -69,7 +69,7 @@ const App: () => Node = () => {
         style={backgroundStyle}>
         <View style={{ flex: 1, flexDirection: 'column', width: '100%' }}>
           <Text>Show webview</Text>
-          <WebView source={{ html: "<html><body style='color:red'>Hello<br/>This is a test</body></html>" }} style={{ width: '100%', height: 600, backgroundColor: 'blue', marginTop: 20 }} />
+          <WebView source={{ html: serverMessages.join() }} style={{ width: '100%', height: 600, backgroundColor: 'blue', marginTop: 20 }} />
         </View>
         <View
           style={{
