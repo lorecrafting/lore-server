@@ -7,10 +7,8 @@
  */
 
 import React from 'react';
-
-// import './axios-to-jquery-ajax.js';
+import axios from 'axios';
 import Evennia from './evennia.js'
-// import axios from 'axios';
 import type { Node } from 'react';
 import {
   SafeAreaView,
@@ -33,18 +31,17 @@ import {
 
 const Section = ({ children, title }): Node => {
   const isDarkMode = useColorScheme() === 'dark';
-  // console.log('owai')
-  // window.wsurl = 'ws://localhost:4002/'
+  console.log('owai')
+  window.wsurl = 'ws://localhost:4002/'
 
-  // axios.get('http://localhost:4001/webclient')
-  //   .then ( res => {
-  //     const responseStr = JSON.stringify(res);
-  //     const idxOfSessionString = responseStr.indexOf('csessid =')
-  //     const sessionId = responseStr.substring(idxOfSessionString + 12, idxOfSessionString + 44)
-  //     console.log('sessionId:', sessionId)
-  //     window.csessid = sessionId;
-  //     // Evennia.init();
-  //   })
+  axios.get('http://localhost:4001/webclient')
+    .then ( function(res) {
+      const responseStr = JSON.stringify(res);
+      const idxOfSessionString = responseStr.indexOf('csessid =')
+      const sessionId = responseStr.substring(idxOfSessionString + 12, idxOfSessionString + 44)
+      console.log('sessionId:', sessionId)
+      global.Evennia.init()
+    })
 
   return (
     <View style={styles.sectionContainer}>

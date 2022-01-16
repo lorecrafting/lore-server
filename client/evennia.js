@@ -269,7 +269,7 @@ An "emitter" object must have a function
                 // Parse the incoming data, send to emitter
                 // Incoming data is on the form [cmdname, args, kwargs]
                 data = JSON.parse(data);
-                // console.log(" server->client:", data)
+                console.log(" server->client:", data)
                 Evennia.emit(data[0], data[1], data[2]);
             };
         }
@@ -439,9 +439,10 @@ An "emitter" object must have a function
 
         return {connect: init, msg: msg, close: close, isOpen: isOpen};
     };
+    console.log('here is Evennia', Evennia)
 
     window.Evennia = Evennia;
-
+    console.log('window.Evennia', window.Evennia)
 })(); // end of auto-calling Evennia object defintion
 
 // helper logging function (requires a js dev-console in the browser)
@@ -451,7 +452,7 @@ function log() {
   }
 }
 
-Evennia.init()
+// Evennia.init()
 // Called when page has finished loading (kicks the client into gear)
 // $(document).ready(function() {
 //     setTimeout( function () {
