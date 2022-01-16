@@ -37,7 +37,7 @@ const UselessTextInput = () => {
         onChangeText={onChangeText}
         value={text}
         onEndEditing={function () {
-          window.Evennia.msg('text',[text])
+          window.Evennia.msg('text', [text])
         }}
       />
     </SafeAreaView>
@@ -57,16 +57,14 @@ const App: () => Node = () => {
       <ScrollView
         contentInsetAdjustmentBehavior="automatic"
         style={backgroundStyle}>
-        
+        <View style={{ flex: 1, flexDirection: 'column', width: '100%' }}>
+          <Text>Show webview</Text>
+          <WebView source={{ html: "<html><body style='color:red'>Hello<br/>This is a test</body></html>" }} style={{ width: '100%', height: 600, backgroundColor: 'blue', marginTop: 20 }} />
+        </View>
         <View
           style={{
             backgroundColor: isDarkMode ? Colors.black : Colors.white,
           }}>
-            <WebView
-          originWhitelist={['*']}
-          source={{ html: '<h1>Hello world</h1>' }}
-        />
-            <Text>asdfWAT</Text>
           <UselessTextInput />
         </View>
       </ScrollView>
