@@ -28,7 +28,6 @@ import {
 
 const UselessTextInput = () => {
   const [text, onChangeText] = React.useState("");
-  const [number, onChangeNumber] = React.useState(null);
 
   return (
     <SafeAreaView>
@@ -38,6 +37,7 @@ const UselessTextInput = () => {
         value={text}
         onEndEditing={function () {
           window.Evennia.msg('text', [text])
+          onChangeText('')
         }}
       />
     </SafeAreaView>
@@ -45,19 +45,23 @@ const UselessTextInput = () => {
 };
 
 const App: () => Node = () => {
+
+  scrollToEnd = () => {
+    console.log('r u scroll')
+    this.scrollView.scrollToEnd();
+  }
+
   const [serverMessages, setServerMessages] = React.useState([]);
   const isDarkMode = useColorScheme() === 'dark';
   const backgroundStyle = {
     backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
   };
-  console.log(window.Evennia.emitter.on)
   
   useEffect( (e) => {
     const serverMessagesList = [];
     Evennia.emitter.on('text', (msg) => {
       serverMessagesList.push(msg[0]);
       setServerMessages([...serverMessagesList])
-      console.log(serverMessagesList)
     })
   },[])
 
@@ -69,15 +73,10 @@ const App: () => Node = () => {
         style={backgroundStyle}>
         <View style={{ flex: 1, flexDirection: 'column', width: '100%' }}>
           <Text>Show webview</Text>
-          <WebView source={{ html: serverMessages.join() }} style={{ width: '100%', height: 600, backgroundColor: 'blue', marginTop: 20 }} />
-        </View>
-        <View
-          style={{
-            backgroundColor: isDarkMode ? Colors.black : Colors.white,
-          }}>
-          <UselessTextInput />
+          <WebView source={{ html: serverMessages.join('<br/><br/>') }} style={{ width: '100%', height: 600, backgroundColor: 'blue', marginTop: 20 }} />
         </View>
       </ScrollView>
+      <UselessTextInput/>
     </SafeAreaView>
   );
 };
