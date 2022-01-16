@@ -63,7 +63,7 @@ const App: () => Node = () => {
 
   return (
     <SafeAreaView style={{ ...backgroundStyle, flex: 1 }}>
-      <View style={{ flex: 1 }}>
+      <View style={{ flex: 1, margin: 14 }}>
         <ScrollView
           ref={mainScrollView}
           contentInsetAdjustmentBehavior="automatic"
